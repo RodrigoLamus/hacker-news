@@ -15,7 +15,7 @@ describe('<TabButtons/>', () => {
     const mockFunction = jest.fn();
 
     const allButton = screen.getByText('All');
-    const favesButton = screen.getByText('My Faves');
+    const favesButton = screen.getByText('My faves');
 
     allButton.setAttribute('onClick', 'mockFunction');
     allButton.onclick = mockFunction;

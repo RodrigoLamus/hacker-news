@@ -6,6 +6,7 @@ export const FavButton: React.FC<{ fav: boolean }> = ({ fav }) => {
   return (
     <button className={styles['fav-button']}>
       <img
+        title="heartIcon"
         className={styles.heart}
         src={fav ? HeartFilledSVG : HollowHeartSVG}
       />
