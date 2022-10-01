@@ -2,6 +2,7 @@ import { InfoTag } from '../InfoTag/InfoTag';
 import styles from './Card.module.css';
 import React from 'react';
 import { CardInterface } from '../../interfaces';
+import { FavButton } from '../FavButton/FavButton';
 
 export const Card: React.FC<{ card: CardInterface; fav: boolean }> = ({
   card,
@@ -16,6 +17,7 @@ export const Card: React.FC<{ card: CardInterface; fav: boolean }> = ({
         title={card.title}
         url={card.url}
       />
+      <FavButton fav={fav} />
     </div>
   );
 };

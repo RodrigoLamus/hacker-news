@@ -14,10 +14,10 @@ export const InfoTag: React.FC<CardInterface> = ({
   };
 
   return (
-    <div onClick={openLink}>
+    <div onClick={openLink} className={styles.info}>
       <ul>
         <li className={styles['extra-info']}>
-          <img src={WatchSVG} alt="watch" />
+          <img className={styles.watch} src={WatchSVG} alt="watch" />
           {`${createdAt.getMinutes()}min ago by ${author}`}
         </li>
         <li className={styles['main-info']}>{title}</li>

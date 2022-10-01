@@ -13,7 +13,7 @@ export const Main: React.FC = () => {
   return (
     <>
       <TabButtons />
-      <Card card={mockData} fav={true} />
+      <Card card={mockData} fav={false} />
     </>
   );
 };
