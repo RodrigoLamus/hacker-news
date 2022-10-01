@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { ContextInterface } from '../interfaces';
 
 export const GlobalContext = createContext<ContextInterface>({
