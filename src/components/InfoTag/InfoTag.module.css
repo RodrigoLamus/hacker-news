@@ -42,8 +42,8 @@ ul {
     list-style: none;
 }
   
-  @media (max-width: 900px) { 
+  @media (max-width: 900px) {
     .extra-info {
-        margin-right: 8.813rem;
+        margin-right: 0;
     }
   }
