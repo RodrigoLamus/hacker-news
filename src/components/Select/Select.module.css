@@ -1,4 +1,6 @@
 .wrapper {
+    display: flex;
+    justify-content: flex-start;
     margin-bottom: 2.375rem;
 }
 
@@ -8,7 +10,7 @@
     align-items: center;
     width: 15rem;
     height: 2rem;
-    margin: 3.938rem 7.125rem 0.063rem 6.386375rem;
+    margin: 3.938rem 7.125rem 0.063rem 9rem;
     padding: 0.313rem 0.75rem 0.313rem 0.75rem;
     border-radius: 4px;
     border: solid 1px #2e2e2e;
@@ -84,5 +86,9 @@
 
     .dropdown {
         margin-top: 6rem;
+    }
+
+    .select {
+        margin-left: 6.386375rem;
     }
 }

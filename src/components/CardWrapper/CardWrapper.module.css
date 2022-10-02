@@ -1,10 +1,13 @@
 .wrapper {
     display: grid;
-    grid-template-columns: 36rem 36rem;
+    grid-template-columns: 1fr 1fr;
     row-gap: 1.875rem;
     column-gap: 2.5rem;
     place-items: center;
     margin: auto;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    width: 100%;
   }
 
 .outer-wrapper {
@@ -12,7 +15,7 @@
     justify-content: center;
 }
   
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
     .wrapper {
       display: flex;
       flex-direction: column;
