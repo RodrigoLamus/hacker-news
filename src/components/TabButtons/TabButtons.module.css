@@ -5,6 +5,10 @@
     height: auto;
   }
   
+  .fav-page {
+    margin-bottom: 8.313rem;
+  }
+
   .fav-button {
     display: flex;
     align-items: center;

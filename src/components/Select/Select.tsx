@@ -14,7 +14,7 @@ const sources: Sources = {
   vue: vuePNG,
 };
 
-export const Select = () => {
+export const Select: React.FC = () => {
   const { dispatchDropdownParam, dropdownParam, setLoading } =
     useSelectContext();
   const [showDropdown, setShowDropdown] = useState(false);

@@ -6,7 +6,10 @@ export const TabButtons = () => {
   const { dispatchTab, activeTab } = useTabButtonsContext();
 
   return (
-    <div role="tab" className={styles.wrapper}>
+    <div
+      role="tab"
+      className={`${styles.wrapper} ${!activeTab ? styles['fav-page'] : ''}`}
+    >
       <button
         className={`${styles['fav-button']} ${activeTab ? styles.active : ''}`}
         onClick={() => dispatchTab(true)}

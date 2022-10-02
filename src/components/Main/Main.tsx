@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMainContext } from '../../context/customContext';
 import { CardWrapper } from '../CardWrapper/CardWrapper';
 import { Select } from '../Select/Select';
 import { TabButtons } from '../TabButtons/TabButtons';
@@ -27,11 +29,42 @@ const mockData = [
 ];
 
 export const Main: React.FC = () => {
+  const { activeTab, cardData, loading, setActive, setLoading } =
+    useMainContext();
+  const loader = useRef<HTMLDivElement>(null);
+  const [newActive, setNewActive] = useState(0);
+  const cardDataExists = cardData.length > 0;
+
+  useEffect(() => {
+    setActive(newActive + 1);
+  }, [newActive, setActive]);
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      if (entries[0].isIntersecting) {
+        setNewActive((prev: number) => prev + 1);
+        setLoading(true);
+      }
+    },
+    [setLoading]
+  );
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 0,
+    };
+    const current = loader.current;
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (current) observer.observe(current);
+  }, [handleObserver, activeTab, loading]);
   return (
     <>
       <TabButtons />
-      <Select />
-      <CardWrapper cardList={mockData} />
+      {activeTab && <Select />}
+      {<CardWrapper cardList={cardData} />}
+      {!loading && activeTab && <div ref={loader} />}
     </>
   );
 };
