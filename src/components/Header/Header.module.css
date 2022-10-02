@@ -1,4 +1,4 @@
-header {
+.header {
     height: 1.75rem;
     margin: 0 0 4.375rem;
     padding: 2.75rem 0rem 2.625rem 9.375rem;
@@ -19,4 +19,14 @@ header {
     letter-spacing: normal;
     color: #3b3b3b;
   }
+
+  @media(max-width:900px) {
+    .header {
+      display: flex;
+      justify-content: center;
+      padding-left: 0;
+    }
+  }
+
+
   

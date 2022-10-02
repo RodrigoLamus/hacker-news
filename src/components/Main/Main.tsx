@@ -1,4 +1,5 @@
 import { CardWrapper } from '../CardWrapper/CardWrapper';
+import { Select } from '../Select/Select';
 import { TabButtons } from '../TabButtons/TabButtons';
 
 const mockData = [
@@ -29,6 +30,7 @@ export const Main: React.FC = () => {
   return (
     <>
       <TabButtons />
+      <Select />
       <CardWrapper cardList={mockData} />
     </>
   );

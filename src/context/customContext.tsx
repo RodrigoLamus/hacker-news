@@ -15,3 +15,9 @@ export const useCardWrapperContext = () => {
   const { favList, activeTab } = useContext(GlobalContext);
   return { favList, activeTab };
 };
+
+export const useSelectContext = () => {
+  const { dispatchDropdownParam, dropdownParam, setLoading } =
+    useContext(GlobalContext);
+  return { dispatchDropdownParam, dropdownParam, setLoading };
+};

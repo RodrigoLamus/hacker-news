@@ -7,11 +7,17 @@ export const GlobalContext = createContext<ContextInterface>({
   activeTab: true,
   dispatchFavList: () => {},
   favList: [],
+  dispatchDropdownParam: () => {},
+  dropdownParam: '',
+  setLoading: () => {},
+  loading: false,
 });
 
 export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   const [activeTab, setActiveTab] = useState(true);
   const [favList, setFavList] = useState<CardInterface[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [dropdownParam, setDropdownParam] = useState('');
 
   useEffect(() => {
     const savedFavList = getLocalStorage('list');
@@ -22,10 +28,20 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
       );
 
     setFavList(savedFavList);
+
+    const savedParam = getLocalStorage('filter');
+
+    setDropdownParam(savedParam.length > 0 ? savedParam : '');
+    return () => setFavList([]);
   }, []);
 
   const dispatchTab = (actionType: boolean) => {
     setActiveTab(actionType);
+  };
+
+  const dispatchDropdownParam = (dropdownParam: string) => {
+    setLocalStorage('filter', dropdownParam);
+    setDropdownParam(dropdownParam);
   };
 
   const dispatchFavList = (
@@ -50,6 +66,10 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
         activeTab,
         dispatchFavList,
         favList,
+        setLoading,
+        loading,
+        dispatchDropdownParam,
+        dropdownParam,
       }}
     >
       {props.children}
