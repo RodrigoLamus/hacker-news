@@ -17,7 +17,7 @@ export const Card: React.FC<{ card: CardInterface; fav: boolean }> = ({
         title={card.title}
         url={card.url}
       />
-      <FavButton fav={fav} />
+      <FavButton cardItem={card} fav={fav} />
     </div>
   );
 };
