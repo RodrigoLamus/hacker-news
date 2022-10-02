@@ -1,6 +1,4 @@
 .wrapper {
-    display: flex;
-    justify-content: flex-start;
     margin-bottom: 2.375rem;
 }
 
@@ -36,7 +34,7 @@
 .dropdown {
     width: 15rem;
     height: 8.688rem;
-    margin: 0 7.125rem 0.063rem 6.386375rem; 
+    margin: 0 7.125rem 0.063rem 9rem; 
     box-shadow: 0 2px 2px 0 #dad8d8;
     background-color: #fff;
     position: absolute;
@@ -86,6 +84,7 @@
 
     .dropdown {
         margin-top: 6rem;
+        margin-left: 6.386375rem;
     }
 
     .select {
