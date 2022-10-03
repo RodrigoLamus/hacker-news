@@ -8,7 +8,7 @@ export interface ContextInterface {
     dispatchDropdownParam: (actionType: string) => void;
     dropdownParam: string;
     cardData: CardInterface[];
-    setActive: (actionType: number) => void;
+    setActive: (actionType: number | ((prev: number) => number)) => void;
     active: number
 }
 export interface CardInterface {
@@ -17,6 +17,7 @@ export interface CardInterface {
     title: string;
     createdAt: Date;
     url: string;
+    nodeRef?: any
   }
 
   export interface Sources {

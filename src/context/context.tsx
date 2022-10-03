@@ -20,6 +20,7 @@ export const GlobalContext = createContext<ContextInterface>({
 export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   const [activeTab, setActiveTab] = useState(true);
   const [favList, setFavList] = useState<CardInterface[]>([]);
+  const [oldDropdownParam, setOldDropdownParam] = useState('');
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
   const [cardData, setCardData] = useState<CardInterface[]>([]);
@@ -59,7 +60,8 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
 
   const fetchNewInfo = useCallback(async () => {
     try {
-      const data = await fetchHits(dropdownParam, active);
+      const data = await fetchHits(dropdownParam, 1);
+      setActive(1);
       setCardData([...data]);
     } catch (e) {
       console.log(e);
@@ -76,9 +78,10 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   }, [fetchNewInfo, dropdownParam]);
 
   useEffect(() => {
-    if (dropdownParam) {
+    if (oldDropdownParam === dropdownParam && dropdownParam !== '') {
       fetchInfoForInfiniteScroll();
     }
+    setOldDropdownParam(dropdownParam);
     // eslint-disable-next-line
   }, [fetchInfoForInfiniteScroll, active]);
 
