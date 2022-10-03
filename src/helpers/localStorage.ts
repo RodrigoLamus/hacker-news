@@ -9,5 +9,4 @@ export const getLocalStorage = (type: string) => {
 
 export const setLocalStorage = <T>(type: string, value: T) => {
   return localStorage.setItem(type, JSON.stringify(value));
-
 };

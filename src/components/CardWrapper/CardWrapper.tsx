@@ -2,7 +2,6 @@ import { Card } from '../Card/Card';
 import styles from './CardWrapper.module.css';
 import { CardInterface } from '../../interfaces';
 import { useCardWrapperContext } from '../../context/customContext';
-import { useEffect, useState } from 'react';
 
 export const CardWrapper: React.FC<{
   cardList: CardInterface[];

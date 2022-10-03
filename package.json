@@ -6,7 +6,10 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --hot",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write . --config ./.prettierrc"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +25,14 @@
     "@types/node": "^18.7.23",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest-environment-jsdom": "^29.1.2",

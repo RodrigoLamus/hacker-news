@@ -1,32 +1,29 @@
 .header {
-    height: 1.75rem;
-    margin: 0 0 4.375rem;
-    padding: 2.75rem 0rem 2.625rem 9.375rem;
-    box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
-    background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
-  }
-  
-  .HACKER-NEWS {
-    width: 13rem;
-    height: 1.75rem;
-    object-fit: contain;
-    font-family: Baskerville;
-    font-size: 1.75rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1;
-    letter-spacing: normal;
-    color: #3b3b3b;
-  }
+  height: 1.75rem;
+  margin: 0 0 4.375rem;
+  padding: 2.75rem 0rem 2.625rem 9.375rem;
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+}
 
-  @media(max-width:900px) {
-    .header {
-      display: flex;
-      justify-content: center;
-      padding-left: 0;
-    }
+.HACKER-NEWS {
+  width: 13rem;
+  height: 1.75rem;
+  object-fit: contain;
+  font-family: Baskerville;
+  font-size: 1.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: #3b3b3b;
+}
+
+@media (max-width: 900px) {
+  .header {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
   }
-
-
-  
+}

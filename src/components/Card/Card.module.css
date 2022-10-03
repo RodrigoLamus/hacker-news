@@ -1,29 +1,29 @@
-.card {  
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 34.375rem;
-    height: 5.625rem;
-    padding: 0 0 0 1.625rem;
-    opacity: 0.8;
-    border-radius: 6px;
-    border: solid 1px #979797;
-    background-color: #fff;
-    opacity: 0.1;
-  }
+.card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 34.375rem;
+  height: 5.625rem;
+  padding: 0 0 0 1.625rem;
+  opacity: 0.8;
+  border-radius: 6px;
+  border: solid 1px #979797;
+  background-color: #fff;
+  opacity: 0.1;
+}
 
-  .tran {
-    opacity: 1;
-    transition: opacity 0.1s ease-in-out;
+.tran {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.card:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 80%;
+    height: auto;
   }
-  
-  .card:hover {
-    opacity: 0.6;
-  }
-  
-  @media (max-width:900px) {
-    .card {
-      width: 80%;
-      height: auto;
-    }
-  }
+}
