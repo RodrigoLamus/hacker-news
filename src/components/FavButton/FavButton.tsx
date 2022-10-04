@@ -2,12 +2,14 @@ import styles from './FavButton.module.css';
 import HeartFilledSVG from '../../../public/assets/iconmonstr-favorite-3.svg';
 import HollowHeartSVG from '../../../public/assets/iconmonstr-favorite-2.svg';
 import { useFavButtonContext } from '../../context/customContext';
-import { CardInterface } from '../../interfaces';
+import { CardInterface } from '../../global/interfaces';
 
-export const FavButton: React.FC<{ cardItem: CardInterface; fav: boolean }> = ({
-  cardItem,
-  fav,
-}) => {
+interface IFavButton {
+  cardItem: CardInterface;
+  fav: boolean;
+}
+
+export const FavButton: React.FC<IFavButton> = ({ cardItem, fav }) => {
   const {
     favList: { dispatch },
   } = useFavButtonContext();

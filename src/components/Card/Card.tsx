@@ -1,13 +1,15 @@
 import { InfoTag } from '../InfoTag/InfoTag';
 import styles from './Card.module.css';
 import React, { useEffect, useState } from 'react';
-import { CardInterface } from '../../interfaces';
+import { CardInterface } from '../../global/interfaces';
 import { FavButton } from '../FavButton/FavButton';
 
-export const Card: React.FC<{ card: CardInterface; fav: boolean }> = ({
-  card,
-  fav,
-}) => {
+interface ICard {
+  card: CardInterface;
+  fav: boolean;
+}
+
+export const Card: React.FC<ICard> = ({ card, fav }) => {
   const [transition, setTransition] = useState('');
 
   useEffect(() => {

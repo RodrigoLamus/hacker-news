@@ -1,4 +1,4 @@
-import { CardInterface } from '../../interfaces';
+import { CardInterface } from '../../global/interfaces';
 import styles from './InfoTag.module.css';
 import WatchSVG from '../../../public/assets/iconmonstr-time-2.svg';
 

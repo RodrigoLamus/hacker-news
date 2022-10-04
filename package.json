@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --hot",
-    "test": "react-scripts test",
+    "test": "react-scripts test .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write . --config ./.prettierrc"

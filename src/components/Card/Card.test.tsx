@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import { Card } from './Card';
-import { CardInterface } from '../../interfaces';
+import { CardInterface } from '../../global/interfaces';
 
 describe('<Card/>', () => {
   const mockData: CardInterface = {

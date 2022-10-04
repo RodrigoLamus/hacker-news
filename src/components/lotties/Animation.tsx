@@ -23,12 +23,19 @@ const defaultOptions = {
   },
 };
 
-export const Animation: React.FC<{
+interface IAnimation {
   type: string;
   height: number;
   width: number;
   title?: string;
-}> = ({ type, height, width, title }) => {
+}
+
+export const Animation: React.FC<IAnimation> = ({
+  type,
+  height,
+  width,
+  title,
+}) => {
   defaultOptions.animationData = jsonType(type);
 
   return (

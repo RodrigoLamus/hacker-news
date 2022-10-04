@@ -1,4 +1,4 @@
-import { CardInterface } from '../interfaces';
+import { CardInterface } from '../global/interfaces';
 
 export const getLocalStorage = (type: string) => {
   const parsed = JSON.parse(localStorage.getItem(type) || '[]');

@@ -1,4 +1,4 @@
-import { CardInterface, HitInterface } from '../interfaces';
+import { CardInterface, HitInterface } from '../global/interfaces';
 
 export const fetchHits = async (dropdownParam: string, active: number) => {
   try {

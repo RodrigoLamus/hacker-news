@@ -1,16 +1,22 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../helpers/localStorage';
-import { CardInterface, ContextInterface } from '../interfaces';
+import { CardInterface, ContextInterface } from '../global/interfaces';
 import { fetchHits } from '../services/fetchInfo';
+import { deleteDuplicates } from '../helpers/deleteDuplicates';
+import { addOrRemove } from '../helpers/addOrRemove';
 
-export const GlobalContext = createContext<ContextInterface>({
+const globalContextDefaultValues: ContextInterface = {
   tab: { dispatch: () => {}, state: true },
   favList: { dispatch: () => {}, state: [] },
   dropdownParam: { dispatch: () => {}, state: '' },
   loading: { dispatch: () => {}, state: false },
   cardData: [],
   active: { dispatch: () => {}, state: 0 },
-});
+};
+
+export const GlobalContext = createContext<ContextInterface>(
+  globalContextDefaultValues
+);
 
 export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   const [activeTab, setActiveTab] = useState(true);
@@ -43,13 +49,10 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   const fetchInfoForInfiniteScroll = useCallback(async () => {
     try {
       const data = await fetchHits(dropdownParamState, active);
-      const newCardData = [...cardData, ...data].filter(
-        (card: CardInterface, i: number, arr: CardInterface[]) =>
-          arr.findIndex((cards) => cards.id === card.id) === i
-      );
+      const newCardData = deleteDuplicates([...cardData, ...data]);
       setCardData(newCardData);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     } finally {
       setLoading(false);
     }
@@ -62,7 +65,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
       setActive(1);
       setCardData([...data]);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     } finally {
       setLoading(false);
     }
@@ -95,17 +98,12 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
     setDropdownParamState(dropdownParam);
   };
 
-  const dispatchFavList = (
-    listItem: CardInterface | undefined,
-    set: boolean
-  ) => {
+  const dispatchFavList = (listItem: CardInterface, set: boolean) => {
     const oldList = getLocalStorage('list');
     oldList.forEach(
       (elem: CardInterface) => (elem.createdAt = new Date(elem.createdAt))
     );
-    const newFavList: CardInterface[] = set
-      ? [...oldList, { ...listItem, fav: set }]
-      : [...oldList].filter((elem) => elem.id !== listItem?.id);
+    const newFavList = addOrRemove(set, oldList, listItem);
     setLocalStorage('list', newFavList);
     setFavList(newFavList);
   };

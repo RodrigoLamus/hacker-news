@@ -2,23 +2,44 @@ import { useContext } from 'react';
 import { GlobalContext } from './context';
 
 export const useTabButtonsContext = () => {
-  const { tab } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error(
+      'useTabButtonsContext should be used within a GlobaProvider'
+    );
+  }
+  const { tab } = context;
   return { tab };
 };
 
 export const useFavButtonContext = () => {
-  const { favList } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error(
+      'useFavButtonContext should be used within a GlobaProvider'
+    );
+  }
+  const { favList } = context;
   return { favList };
 };
 
 export const useCardWrapperContext = () => {
-  const { favList, tab } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error(
+      'useCardWrapperContext should be used within a GlobaProvider'
+    );
+  }
+  const { favList, tab } = context;
   return { favList, tab };
 };
 
 export const useMainContext = () => {
-  const { tab, cardData, loading, dropdownParam, favList, active } =
-    useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error('useMainContext should be used within a GlobaProvider');
+  }
+  const { tab, cardData, loading, dropdownParam, favList, active } = context;
   return {
     tab,
     cardData,
@@ -30,6 +51,10 @@ export const useMainContext = () => {
 };
 
 export const useSelectContext = () => {
-  const { dropdownParam, loading } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error('useSelectContext should be used within a GlobaProvider');
+  }
+  const { dropdownParam, loading } = context;
   return { dropdownParam, loading };
 };
