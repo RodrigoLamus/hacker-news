@@ -2,6 +2,7 @@ import Lottie from 'react-lottie';
 import * as noFavAnimationData from './noFavorites/noFavoritesLottie.json';
 import * as searchAnimationData from './search/searchLottie.json';
 import styles from './Animation.module.css';
+import { IAnimation } from '../../global/interfaces';
 
 const jsonType = (type: string) => {
   switch (type) {
@@ -22,13 +23,6 @@ const defaultOptions = {
     preserveAspectRatio: 'xMidYMid slice',
   },
 };
-
-interface IAnimation {
-  type: string;
-  height: number;
-  width: number;
-  title?: string;
-}
 
 export const Animation: React.FC<IAnimation> = ({
   type,

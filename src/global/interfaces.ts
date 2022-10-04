@@ -11,6 +11,23 @@ export interface ICard {
   fav: boolean;
 }
 
+export interface ICardWrapper {
+  cardList: CardInterface[];
+}
+export interface IFavButton {
+  cardItem: CardInterface;
+  fav: boolean;
+}
+export interface IHeader {
+  title: string;
+}
+export interface IAnimation {
+  type: string;
+  height: number;
+  width: number;
+  title?: string;
+}
+
 export interface ISelect {
   options: string[];
 }
