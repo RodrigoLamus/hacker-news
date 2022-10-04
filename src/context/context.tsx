@@ -4,27 +4,22 @@ import { CardInterface, ContextInterface } from '../interfaces';
 import { fetchHits } from '../services/fetchInfo';
 
 export const GlobalContext = createContext<ContextInterface>({
-  dispatchTab: () => {},
-  activeTab: true,
-  dispatchFavList: () => {},
-  favList: [],
-  dispatchDropdownParam: () => {},
-  dropdownParam: '',
-  setLoading: () => {},
-  loading: false,
+  tab: { dispatch: () => {}, state: true },
+  favList: { dispatch: () => {}, state: [] },
+  dropdownParam: { dispatch: () => {}, state: '' },
+  loading: { dispatch: () => {}, state: false },
   cardData: [],
-  active: 0,
-  setActive: () => {},
+  active: { dispatch: () => {}, state: 0 },
 });
 
 export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   const [activeTab, setActiveTab] = useState(true);
   const [favList, setFavList] = useState<CardInterface[]>([]);
-  const [oldDropdownParam, setOldDropdownParam] = useState('');
+  const [oldDropdownParamState, setOldDropdownParamState] = useState('');
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
   const [cardData, setCardData] = useState<CardInterface[]>([]);
-  const [dropdownParam, setDropdownParam] = useState('');
+  const [dropdownParamState, setDropdownParamState] = useState('');
 
   useEffect(() => {
     const savedFavList = getLocalStorage('list');
@@ -38,13 +33,16 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
 
     const savedParam = getLocalStorage('filter');
 
-    setDropdownParam(savedParam.length > 0 ? savedParam : '');
-    return () => setFavList([]);
+    setDropdownParamState(savedParam.length > 0 ? savedParam : '');
+    return () => {
+      setFavList([]);
+      setDropdownParamState('');
+    };
   }, []);
 
   const fetchInfoForInfiniteScroll = useCallback(async () => {
     try {
-      const data = await fetchHits(dropdownParam, active);
+      const data = await fetchHits(dropdownParamState, active);
       const newCardData = [...cardData, ...data].filter(
         (card: CardInterface, i: number, arr: CardInterface[]) =>
           arr.findIndex((cards) => cards.id === card.id) === i
@@ -60,7 +58,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
 
   const fetchNewInfo = useCallback(async () => {
     try {
-      const data = await fetchHits(dropdownParam, 1);
+      const data = await fetchHits(dropdownParamState, 1);
       setActive(1);
       setCardData([...data]);
     } catch (e) {
@@ -69,19 +67,22 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
       setLoading(false);
     }
     // eslint-disable-next-line
-  }, [dropdownParam]);
+  }, [dropdownParamState]);
 
   useEffect(() => {
-    if (dropdownParam) {
+    if (dropdownParamState) {
       fetchNewInfo();
     }
-  }, [fetchNewInfo, dropdownParam]);
+  }, [fetchNewInfo, dropdownParamState]);
 
   useEffect(() => {
-    if (oldDropdownParam === dropdownParam && dropdownParam !== '') {
+    if (
+      oldDropdownParamState === dropdownParamState &&
+      dropdownParamState !== ''
+    ) {
       fetchInfoForInfiniteScroll();
     }
-    setOldDropdownParam(dropdownParam);
+    setOldDropdownParamState(dropdownParamState);
     // eslint-disable-next-line
   }, [fetchInfoForInfiniteScroll, active]);
 
@@ -91,7 +92,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
 
   const dispatchDropdownParam = (dropdownParam: string) => {
     setLocalStorage('filter', dropdownParam);
-    setDropdownParam(dropdownParam);
+    setDropdownParamState(dropdownParam);
   };
 
   const dispatchFavList = (
@@ -112,17 +113,15 @@ export const Provider: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <GlobalContext.Provider
       value={{
-        dispatchTab,
-        activeTab,
-        dispatchFavList,
-        favList,
-        setLoading,
-        loading,
-        dispatchDropdownParam,
-        dropdownParam,
+        tab: { dispatch: dispatchTab, state: activeTab },
+        favList: { dispatch: dispatchFavList, state: favList },
+        loading: { dispatch: setLoading, state: loading },
+        dropdownParam: {
+          dispatch: dispatchDropdownParam,
+          state: dropdownParamState,
+        },
         cardData,
-        active,
-        setActive,
+        active: { dispatch: setActive, state: active },
       }}
     >
       {props.children}

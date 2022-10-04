@@ -1,16 +1,37 @@
 export interface ContextInterface {
-  dispatchTab: (actionType: boolean) => void;
-  activeTab: boolean;
-  dispatchFavList: (cardItem: CardInterface, set: boolean) => void;
-  favList: CardInterface[];
-  setLoading: (actionType: boolean) => void;
-  loading: boolean;
-  dispatchDropdownParam: (actionType: string) => void;
-  dropdownParam: string;
+  tab: ITab;
+  favList: IFavList;
+  loading: ILoading;
+  dropdownParam: IDropdownParam;
   cardData: CardInterface[];
-  setActive: (actionType: number | ((prev: number) => number)) => void;
-  active: number;
+  active: IActive;
 }
+
+export interface ITab {
+  dispatch: (actionType: boolean) => void;
+  state: boolean;
+}
+
+export interface IFavList {
+  dispatch: (cardItem: CardInterface, set: boolean) => void;
+  state: CardInterface[];
+}
+
+export interface ILoading {
+  dispatch: (actionType: boolean) => void;
+  state: boolean;
+}
+
+export interface IDropdownParam {
+  dispatch: (actionType: string) => void;
+  state: string;
+}
+
+export interface IActive {
+  dispatch: (actionType: number | ((prev: number) => number)) => void;
+  state: number;
+}
+
 export interface CardInterface {
   id: number;
   author: string;
@@ -19,13 +40,13 @@ export interface CardInterface {
   url: string;
 }
 
-export interface Sources {
+export interface SourcesInterface {
   angular: string;
   react: string;
   vue: string;
 }
 
-export interface Hit {
+export interface HitInterface {
   author: string;
   comment_text?: string;
   created_at: string;

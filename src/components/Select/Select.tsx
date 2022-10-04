@@ -5,29 +5,31 @@ import PointerSVG from '../../../public/assets/pointer_arrow_icon.svg';
 import angularPNG from '../../../public/assets/angular.png';
 import reactPNG from '../../../public/assets/react.png';
 import vuePNG from '../../../public/assets/vue.png';
-import { Sources } from '../../interfaces';
+import { SourcesInterface } from '../../interfaces';
 
 const options = ['Angular', 'React', 'Vue'];
-const sources: Sources = {
+const sources: SourcesInterface = {
   angular: angularPNG,
   react: reactPNG,
   vue: vuePNG,
 };
 
 export const Select: React.FC = () => {
-  const { dispatchDropdownParam, dropdownParam, setLoading } =
-    useSelectContext();
+  const {
+    dropdownParam,
+    loading: { dispatch: dispatchLoading },
+  } = useSelectContext();
   const [showDropdown, setShowDropdown] = useState(false);
   const onOptionClicked = (value: string) => {
-    if (value === dropdownParam) return;
-    dispatchDropdownParam(value);
+    if (value === dropdownParam.state) return;
+    dropdownParam.dispatch(value);
     setShowDropdown(false);
-    setLoading(true);
+    dispatchLoading(true);
   };
 
-  const dropdownShownValue = dropdownParam
-    ? dropdownParam.split('')[0].toUpperCase() +
-      dropdownParam.split('').slice(1).join('')
+  const dropdownShownValue = dropdownParam.state
+    ? dropdownParam.state.split('')[0]?.toUpperCase() +
+      dropdownParam.state.split('').slice(1).join('')
     : 'Select your news';
 
   return (
@@ -51,7 +53,9 @@ export const Select: React.FC = () => {
                 key={option}
                 onClick={() => onOptionClicked(option.toLocaleLowerCase())}
               >
-                <img src={sources[option.toLowerCase() as keyof Sources]} />
+                <img
+                  src={sources[option.toLowerCase() as keyof SourcesInterface]}
+                />
                 {option}
               </li>
             );

@@ -8,11 +8,13 @@ export const FavButton: React.FC<{ cardItem: CardInterface; fav: boolean }> = ({
   cardItem,
   fav,
 }) => {
-  const { dispatchFavList } = useFavButtonContext();
+  const {
+    favList: { dispatch },
+  } = useFavButtonContext();
   return (
     <button
       className={styles['fav-button']}
-      onClick={() => dispatchFavList(cardItem, !fav)}
+      onClick={() => dispatch(cardItem, !fav)}
     >
       <img
         title="heartIcon"

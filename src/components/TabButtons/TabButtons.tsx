@@ -3,22 +3,24 @@ import { useTabButtonsContext } from '../../context/customContext';
 import styles from './TabButtons.module.css';
 
 export const TabButtons = () => {
-  const { dispatchTab, activeTab } = useTabButtonsContext();
+  const {
+    tab: { state, dispatch },
+  } = useTabButtonsContext();
 
   return (
     <div
       role="tab"
-      className={`${styles.wrapper} ${!activeTab ? styles['fav-page'] : ''}`}
+      className={`${styles.wrapper} ${!state ? styles['fav-page'] : ''}`}
     >
       <button
-        className={`${styles['fav-button']} ${activeTab ? styles.active : ''}`}
-        onClick={() => dispatchTab(true)}
+        className={`${styles['fav-button']} ${state ? styles.active : ''}`}
+        onClick={() => dispatch(true)}
       >
         All
       </button>
       <button
-        className={`${styles['fav-button']} ${!activeTab ? styles.active : ''}`}
-        onClick={() => dispatchTab(false)}
+        className={`${styles['fav-button']} ${!state ? styles.active : ''}`}
+        onClick={() => dispatch(false)}
       >
         My faves
       </button>

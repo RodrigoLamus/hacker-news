@@ -1,4 +1,4 @@
-import { CardInterface, Hit } from '../interfaces';
+import { CardInterface, HitInterface } from '../interfaces';
 
 export const fetchHits = async (dropdownParam: string, active: number) => {
   try {
@@ -7,7 +7,7 @@ export const fetchHits = async (dropdownParam: string, active: number) => {
     );
     const data = await response.json();
     const filteredData: CardInterface[] = data.hits
-      .map((hit: Hit) => ({
+      .map((hit: HitInterface) => ({
         createdAt: new Date(hit.created_at),
         url: hit.story_url,
         id: hit.story_id,

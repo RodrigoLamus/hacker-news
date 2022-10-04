@@ -6,21 +6,24 @@ import { useCardWrapperContext } from '../../context/customContext';
 export const CardWrapper: React.FC<{
   cardList: CardInterface[];
 }> = ({ cardList }) => {
-  const { favList, activeTab } = useCardWrapperContext();
+  const {
+    favList: { state: favListState },
+    tab: { state: tabState },
+  } = useCardWrapperContext();
 
   const cardToRender = (card: CardInterface, index: number) => {
     return (
       <Card
         key={card.id + index}
         card={card}
-        fav={favList.some((elem) => elem.id === card.id)}
+        fav={favListState.some((elem) => elem.id === card.id)}
       />
     );
   };
 
-  const listToRender = activeTab
+  const listToRender = tabState
     ? cardList.map((card, i) => cardToRender(card, i))
-    : favList.map((card, i) => cardToRender(card, i));
+    : favListState.map((card, i) => cardToRender(card, i));
 
   return (
     <div className={styles['outer-wrapper']}>
