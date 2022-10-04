@@ -6,6 +6,14 @@ export interface ContextInterface {
   cardData: CardInterface[];
   active: IActive;
 }
+export interface ICard {
+  card: CardInterface;
+  fav: boolean;
+}
+
+export interface ISelect {
+  options: string[];
+}
 
 export interface ITab {
   dispatch: (actionType: boolean) => void;

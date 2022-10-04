@@ -5,16 +5,15 @@ import PointerSVG from '../../../public/assets/pointer_arrow_icon.svg';
 import angularPNG from '../../../public/assets/angular.png';
 import reactPNG from '../../../public/assets/react.png';
 import vuePNG from '../../../public/assets/vue.png';
-import { SourcesInterface } from '../../global/interfaces';
+import { ISelect, SourcesInterface } from '../../global/interfaces';
 
-const options = ['Angular', 'React', 'Vue'];
 const sources: SourcesInterface = {
   angular: angularPNG,
   react: reactPNG,
   vue: vuePNG,
 };
 
-export const Select: React.FC = () => {
+export const Select: React.FC<ISelect> = ({ options }) => {
   const {
     dropdownParam,
     loading: { dispatch: dispatchLoading },

@@ -6,6 +6,8 @@ import { Spinner } from '../Spinner/Spinner';
 import { TabButtons } from '../TabButtons/TabButtons';
 import { Animation } from '../lotties/Animation';
 
+const options = ['Angular', 'React', 'Vue'];
+
 export const Main: React.FC = () => {
   const { tab, cardData, loading, active, dropdownParam, favList } =
     useMainContext();
@@ -32,7 +34,7 @@ export const Main: React.FC = () => {
   return (
     <>
       <TabButtons />
-      {tab.state && <Select />}
+      {tab.state && <Select options={options} />}
       {<CardWrapper cardList={cardData} />}
       {!cardDataExists &&
         tab.state &&
