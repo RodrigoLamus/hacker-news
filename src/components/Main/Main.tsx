@@ -11,8 +11,12 @@ const options = ['Angular', 'React', 'Vue'];
 export const Main: React.FC = () => {
   const { tab, cardData, loading, active, dropdownParam, favList } =
     useMainContext();
+  const tabStateExist = !!tab.state;
   const loader = useRef<HTMLDivElement>(null);
   const cardDataExists = cardData.length > 0;
+  const noneFilterSelected =
+    !cardDataExists && tab.state && !loading.state && !dropdownParam.state;
+  const noFavorites = !loading.state && tab.state && dropdownParam.state;
 
   const handleObserver = (entries: IntersectionObserverEntry[]) => {
     if (entries[0].isIntersecting) {
@@ -34,12 +38,12 @@ export const Main: React.FC = () => {
   return (
     <>
       <TabButtons />
-      {tab.state && <Select options={options} />}
+      {tabStateExist && <Select options={options} />}
+
       {<CardWrapper cardList={cardData} />}
-      {!cardDataExists &&
-        tab.state &&
-        !loading.state &&
-        !dropdownParam.state && (
+
+      <div>
+        {noneFilterSelected && (
           <Animation
             title="Please filter in the left dropdown to start searching for news"
             type={'search'}
@@ -47,13 +51,15 @@ export const Main: React.FC = () => {
             height={300}
           />
         )}
-      {favList.state.length === 0 && !tab.state && (
-        <Animation type={'noFavorites'} width={300} height={300} />
-      )}
-      {loading.state && <Spinner />}
-      {!loading.state && tab.state && dropdownParam.state && (
-        <div ref={loader} />
-      )}
+        {favList.state.length === 0 && !tab.state && (
+          <Animation type={'noFavorites'} width={300} height={300} />
+        )}
+      </div>
+
+      <div>
+        {loading.state && <Spinner />}
+        {noFavorites && <div ref={loader} />}
+      </div>
     </>
   );
 };

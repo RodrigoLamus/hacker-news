@@ -1,5 +1,12 @@
 import { CardInterface, HitInterface } from '../global/interfaces';
 
+/**
+ * the function fetchs the info from the API given the filter parameter and the number of the page it has to get
+ * @param {string} dropdownParam
+ * @param {number} active
+ * @returns {CardInterface[]}
+ */
+
 export const fetchHits = async (dropdownParam: string, active: number) => {
   try {
     const response = await await fetch(

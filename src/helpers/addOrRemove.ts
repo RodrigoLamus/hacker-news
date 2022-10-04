@@ -1,11 +1,11 @@
 import { CardInterface } from '../global/interfaces';
 
 /**
- * brief description here...
- * @param set
- * @param oldList
- * @param listItem
- * @returns
+ * the function adds o removes an element from the card list to render
+ * @param {boolean} set
+ * @param {CardInterface[]} oldList
+ * @param {CardInterface} listItem
+ * @returns {CardInterface[]}
  */
 export const addOrRemove = (
   set: boolean,
